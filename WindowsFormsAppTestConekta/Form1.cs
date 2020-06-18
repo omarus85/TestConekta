@@ -25,36 +25,43 @@ namespace WindowsFormsAppTestConekta
             textBoxOutput.Text = string.Empty;
             foreach (string linea in textBoxInput.Lines)
             {
-                switch (linea[0])
+                try
                 {
-                    case 'I':
-                        Iline(linea.Trim());
-                        break;
-                    case 'C':
-                        Cline(linea.Trim());
-                        break;
-                    case 'L':
-                        Lline(linea.Trim());
-                        break;
-                    case 'V':
-                        Vline(linea.Trim());
-                        break;
-                    case 'H':
-                        Hline(linea.Trim());
-                        break;
-                    case 'F':
-                        break;
-                    case 'S':
-                        Sline(linea.Trim());
-                        break;
-                    case 'X':
-                        Xline(linea.Trim());
-                        break;
-                    default:
-                        MessageBox.Show("Linea no válida: " + linea);
-                        break;
+                    switch (linea[0])
+                    {
+                        case 'I':
+                            Iline(linea.Trim());
+                            break;
+                        case 'C':
+                            Cline(linea.Trim());
+                            break;
+                        case 'L':
+                            Lline(linea.Trim());
+                            break;
+                        case 'V':
+                            Vline(linea.Trim());
+                            break;
+                        case 'H':
+                            Hline(linea.Trim());
+                            break;
+                        case 'F':
+                            Fline(linea.Trim());
+                            break;
+                        case 'S':
+                            Sline(linea.Trim());
+                            break;
+                        case 'X':
+                            Xline(linea.Trim());
+                            break;
+                        default:
+                            MessageBox.Show("Linea no válida: " + linea);
+                            break;
+                    }
                 }
-
+                catch (Exception)
+                {
+                    MessageBox.Show("Linea no válida: " + linea);
+                }
             }
         }
 
@@ -81,10 +88,9 @@ namespace WindowsFormsAppTestConekta
             }
             catch (Exception)
             {
-                MessageBox.Show("Linea no válida: " + line);
+                throw new Exception();
             }
         }
-
         private void Cline(string line)
         {
             if (line.Length == 1)
@@ -93,10 +99,9 @@ namespace WindowsFormsAppTestConekta
             }
             else
             {
-                MessageBox.Show("Linea no válida: " + line);
+                throw new Exception();
             }
         }
-
         private void Lline(string line)
         {
             int x = 0, y = 0;
@@ -124,10 +129,9 @@ namespace WindowsFormsAppTestConekta
             }
             catch (Exception)
             {
-                MessageBox.Show("Linea no válida: " + line);
+                throw new Exception();
             }
         }
-
         private void Sline(string line)
         {
             StringBuilder builder = new StringBuilder();
@@ -170,7 +174,7 @@ namespace WindowsFormsAppTestConekta
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Linea no válida: " + line);
+                throw new Exception();
             }
         }
         private void Hline(string line)
@@ -202,7 +206,7 @@ namespace WindowsFormsAppTestConekta
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Linea no válida: " + line);
+                throw new Exception();
             }
         }
         private void Xline(string line)
@@ -213,7 +217,38 @@ namespace WindowsFormsAppTestConekta
             }
             else
             {
-                MessageBox.Show("Linea no válida: " + line);
+                throw new Exception();
+            }
+        }
+        private void Fline(string line)
+        {
+            int x = 0, y = 0;
+            string[] list = line.Split(' ');
+            try
+            {
+               
+                if (list.Length == 4)
+                {
+                    if (list[0].Length != 1)
+                        throw new Exception();
+                    if (!int.TryParse(list[1], out x))
+                        throw new Exception();
+                    if (!int.TryParse(list[2], out y))
+                        throw new Exception();
+                    if (list[3].Length != 1)
+                        throw new Exception();
+                    if (x > M || y > N)
+                        throw new Exception();
+                    fillRegion(x, y, char.Parse(list[3]));
+                }
+                else
+                {
+                    throw new Exception();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception();
             }
         }
         #endregion Lineas
@@ -240,7 +275,6 @@ namespace WindowsFormsAppTestConekta
             y -= 1;
             image[x, y] = color;
         }
-
         private void paintVLine(int x, int y1, int y2, char color)
         {
             int min = y1 < y2 ? y1 : y2;
@@ -264,6 +298,45 @@ namespace WindowsFormsAppTestConekta
             {
                 image[x, y] = color;
             }
+        }
+
+        private void fillRegion(int x, int y, char color)
+        {
+            char originalColor = image[x - 1, y - 1];
+            image[x - 1, y - 1] = color;
+            if (x - 1 > 0)
+            {
+                if (getColor(x - 1, y) == originalColor)
+                {
+                    fillRegion(x - 1, y, color);
+                }
+            }
+            if (x + 1 <= M)
+            {
+                if (getColor(x + 1, y) == originalColor)
+                {
+                    fillRegion(x + 1, y, color);
+                }
+            }
+            if (y - 1 > 0)
+            {
+                if (getColor(x, y - 1) == originalColor)
+                {
+                    fillRegion(x, y - 1, color);
+                }
+            }
+            if (y + 1 <= N)
+            {
+                if (getColor(x, y + 1) == originalColor)
+                {
+                    fillRegion(x, y + 1, color);
+                }
+            }
+        }
+
+        private char getColor(int x, int y)
+        {
+            return image[x - 1, y - 1];
         }
         #endregion
     }
