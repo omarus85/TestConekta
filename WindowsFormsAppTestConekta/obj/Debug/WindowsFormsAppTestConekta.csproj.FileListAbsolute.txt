@@ -1,0 +1,9 @@
+C:\Users\ovaldez\Documents\GitHub\TestConekta\WindowsFormsAppTestConekta\bin\Debug\WindowsFormsAppTestConekta.exe.config
+C:\Users\ovaldez\Documents\GitHub\TestConekta\WindowsFormsAppTestConekta\bin\Debug\WindowsFormsAppTestConekta.exe
+C:\Users\ovaldez\Documents\GitHub\TestConekta\WindowsFormsAppTestConekta\bin\Debug\WindowsFormsAppTestConekta.pdb
+C:\Users\ovaldez\Documents\GitHub\TestConekta\WindowsFormsAppTestConekta\obj\Debug\WindowsFormsAppTestConekta.csprojAssemblyReference.cache
+C:\Users\ovaldez\Documents\GitHub\TestConekta\WindowsFormsAppTestConekta\obj\Debug\WindowsFormsAppTestConekta.Form1.resources
+C:\Users\ovaldez\Documents\GitHub\TestConekta\WindowsFormsAppTestConekta\obj\Debug\WindowsFormsAppTestConekta.Properties.Resources.resources
+C:\Users\ovaldez\Documents\GitHub\TestConekta\WindowsFormsAppTestConekta\obj\Debug\WindowsFormsAppTestConekta.csproj.GenerateResource.cache
+C:\Users\ovaldez\Documents\GitHub\TestConekta\WindowsFormsAppTestConekta\obj\Debug\WindowsFormsAppTestConekta.exe
+C:\Users\ovaldez\Documents\GitHub\TestConekta\WindowsFormsAppTestConekta\obj\Debug\WindowsFormsAppTestConekta.pdb
