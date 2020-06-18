@@ -40,12 +40,14 @@
             this.textBoxInput.Name = "textBoxInput";
             this.textBoxInput.Size = new System.Drawing.Size(758, 134);
             this.textBoxInput.TabIndex = 0;
+            this.textBoxInput.Text = "Input";
             // 
             // textBoxOutput
             // 
             this.textBoxOutput.Location = new System.Drawing.Point(12, 224);
             this.textBoxOutput.Multiline = true;
             this.textBoxOutput.Name = "textBoxOutput";
+            this.textBoxOutput.ReadOnly = true;
             this.textBoxOutput.Size = new System.Drawing.Size(758, 317);
             this.textBoxOutput.TabIndex = 1;
             // 
